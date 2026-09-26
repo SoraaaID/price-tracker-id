@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+config.toml
+.env
+data/*.db
+data/charts/*.png
+data/screenshots/*.png
+data/logs/*.log
+.pytest_cache/
+
+# Lazada credentials & debug dumps (never commit session cookies)
+input/lazada_cookies.json
+input/*.json
+lazada_debug.html
+*_debug.html

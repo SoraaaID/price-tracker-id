@@ -1,0 +1,62 @@
+# Scheduled price tracking workflow.
+#
+# IMPORTANT: GitHub Actions schedule (cron) is NOT reliable.
+# Documented delay is 5-15 minutes, but in practice delays of 15-60 minutes
+# are common, especially on free tier. For time-sensitive tracking,
+# use a self-hosted runner or a dedicated VPS with system cron.
+#
+# This cron runs every 30 minutes.
+# Actual execution may be delayed by GitHub's scheduler.
+
+name: Track Prices
+
+on:
+  schedule:
+    # Every 30 minutes — expect 15-60 minute delay from GitHub
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          playwright install chromium
+
+      - name: Copy config
+        run: |
+          cp config.example.toml config.toml
+
+      - name: Run price tracker
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python main.py track
+
+      - name: Upload database artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: price-history-db
+          path: data/price_history.db
+          retention-days: 30
+
+      - name: Upload charts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: price-charts
+          path: data/charts/
+          retention-days: 7

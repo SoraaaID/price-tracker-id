@@ -1,0 +1,37 @@
+[telegram]
+bot_token = ""
+chat_id = ""
+
+[scraper]
+timeout = 15
+retry = 3
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+[scraper.shopee]
+use_api_first = true
+api_base = "https://shopee.co.id/api/v4"
+
+[scraper.tokopedia]
+graphql_url = "https://gql.tokopedia.com/graphql/ProductQuery"
+operation_hash = ""  # update manual kalau berubah, cek di Network tab browser
+
+[scraper.browser]
+headless = false
+timeout = 60000
+screenshot_on_error = true
+
+[alert]
+price_drop_threshold_pct = 5.0
+max_alerts_per_hour = 10
+
+[db]
+path = "data/price_history.db"
+
+[chart]
+output_dir = "data/charts"
+
+[scheduler]
+# Nama task di Windows Task Scheduler.
+# Otomatis di-set oleh `doctor.py fix-scheduler`.
+# Kalau sudah punya task dengan nama lain, isi manual.
+task_name = "Price Tracker"

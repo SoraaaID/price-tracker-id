@@ -1,0 +1,43 @@
+{
+    "error": 0,
+    "error_msg": "",
+    "data": {
+        "itemid": 67890,
+        "shopid": 12345,
+        "name": "iPhone 15 Pro Max 256GB Natural Titanium",
+        "price_min": 2249900000000,
+        "price_max": 2249900000000,
+        "price": 2249900000000,
+        "price_before_discount": 2499900000000,
+        "price_max_before_discount": 2499900000000,
+        "stock": 80,
+        "historical_sold": 3100,
+        "sold": 150,
+        "raw_discount": 10,
+        "discount": "10%",
+        "item_rating": {
+            "rating_star": 4.8,
+            "rating_count": [2500, 50, 30, 20, 100, 2300],
+            "rcount_with_context": 1800,
+            "rcount_with_image": 500
+        },
+        "shop_info": {
+            "shopid": 12345,
+            "username": "apple_official_shop",
+            "shop_name": "Apple Official Shop",
+            "is_official_shop": true
+        },
+        "categories": [
+            {"catid": 100636, "display_name": "Handphone & Tablet"},
+            {"catid": 100640, "display_name": "Handphone"}
+        ],
+        "description": "iPhone 15 Pro Max 256GB Natural Titanium. Garansi resmi Apple Indonesia.",
+        "models": [
+            {
+                "name": "Natural Titanium - 256GB",
+                "price": 2249900000000,
+                "stock": 80
+            }
+        ]
+    }
+}
